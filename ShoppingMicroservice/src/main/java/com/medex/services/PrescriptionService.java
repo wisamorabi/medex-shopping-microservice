@@ -25,9 +25,9 @@ public class PrescriptionService {
 	
 	
 	
-	public Prescription getPrescription(int patientid, int cartitemid)
+	public Prescription getPrescription(int patientid, int prescriptionid)
 	{
-		return prescriptiondb.getPrescription(patientid, cartitemid);
+		return prescriptiondb.getPrescription(patientid, prescriptionid);
 	}
 	
 	
@@ -45,20 +45,20 @@ public class PrescriptionService {
 	// pharmacys/{id}/pharmaceuticalStocks web service requirement #5: Update a PharmaceuticalStock allocated in the pharmacy
 ////////////////////////////////////////////////////////////////////////////////////////
 
-	public Prescription updatePrescription(int patientid, int cartitemid, Prescription prescription)
+	public Prescription updatePrescription(int patientid, int prescriptionid, Prescription prescription)
 	{
 		if (patientdb.getPatient(patientid) == null) return null;
 		if (pharmaceuticalDB.getPharmaceutical(prescription.getPharmaceuticalID()) == null) return null;
-		if (prescriptiondb.getPrescription(patientid, cartitemid) == null) return null;
+		if (prescriptiondb.getPrescription(patientid, prescriptionid) == null) return null;
 		prescriptiondb.updatePrescription(prescription);
 		return prescription;
 	}
 	
-	public Status removePrescription(int patientid, int cartitemid)
+	public Status removePrescription(int patientid, int prescriptionid)
 	{
 		if (patientdb.getPatient(patientid) == null) return new Status(false);
-		if (prescriptiondb.getPrescription(patientid, cartitemid) == null) return new Status(false);
-		prescriptiondb.deletePrescription(cartitemid);
+		if (prescriptiondb.getPrescription(patientid, prescriptionid) == null) return new Status(false);
+		prescriptiondb.deletePrescription(prescriptionid);
 		return new Status(true);
 	}
 	

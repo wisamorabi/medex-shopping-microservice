@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.medex.communicationmodules.OrderInfo;
 import com.medex.communicationmodules.Status;
+import com.medex.dependentresources.Prescription;
 import com.medex.model.Order;
 import com.medex.services.OrderService;
 
@@ -72,6 +73,14 @@ public class OrderResources {
 	public OrderResources getOrderItems()
 	{
 		return new OrderResources();
+	}
+	
+	
+	@GET
+	@Path("{Orderid}/Refund")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Status getPrescriptions(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid) {
+		return orderService.Refund(patientid, orderid);
 	}
 	
 

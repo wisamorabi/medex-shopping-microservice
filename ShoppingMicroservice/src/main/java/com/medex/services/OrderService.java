@@ -7,8 +7,11 @@ import com.medex.communicationmodules.OrderInfo;
 import com.medex.communicationmodules.Status;
 import com.medex.database.OrderDB;
 import com.medex.database.PatientDB;
+import com.medex.database.PharmaceuticalStockDB;
+import com.medex.dependentresources.Prescription;
 import com.medex.model.OrderItem;
-
+import com.medex.model.Patient;
+import com.medex.model.CartItem;
 import com.medex.model.Order;
 
 //This is the "backend" of our resources. This is where the logic is executed; the logic is basic since the database handles itself very well.
@@ -16,6 +19,8 @@ public class OrderService {
 	OrderDB orderdb = new OrderDB(); //(Instead of the pseudo-database)
 	OrderItemService orderItemService = new OrderItemService();
 	PatientDB patientdb = new PatientDB();
+	PharmaceuticalStockDB pharmaceuticalstockdb = new PharmaceuticalStockDB();
+	PrescriptionService prescriptionservice = new PrescriptionService();
 	public OrderService() {} 
 	
 	//All what is below is just calling the functions belonging to the pharmacies' database/table.
@@ -53,6 +58,54 @@ public class OrderService {
 		orderdb.updateOrder(order);
 		return OrderToOrderInfo(patientid, order);
 	}
+	
+	
+	public Status Refund(int patientid, int orderid)
+	{
+		if (patientdb.getPatient(patientid) == null) return null;
+		if (orderdb.getOrder(patientid, orderid) == null) return null;
+		
+		
+		int subtotal = 0;
+		List<OrderItem> lst = orderItemService.getAllOrderItems(patientid, orderid);
+		List<Prescription> lst2 = prescriptionservice.getAllPrescriptions(patientid);
+		for (OrderItem oitem : lst)
+		{
+			if (pharmaceuticalstockdb.getPharmaceuticalStock(oitem.getPharmacyID(), oitem.getMedicineID()) == null) return new Status(false);
+			int prescIDFound = -1;
+			for (Prescription p : lst2)
+			{
+				if (p.getPharmaceuticalID() == oitem.getMedicineID())
+				{
+					if (p.getCount() <= oitem.getMedicineID()) 
+						{
+							prescIDFound = p.getId();
+							break;
+						}
+				}
+			}
+			if (prescIDFound != -1)
+			{
+				Prescription prescFound = prescriptionservice.getPrescription(patientid, prescIDFound);
+				prescFound.setCount(prescFound.getCount() + oitem.getCount());
+			}
+			subtotal += oitem.getCount() * pharmaceuticalstockdb.getPharmaceuticalStock(oitem.getPharmacyID(), oitem.getMedicineID()).getMedicinePrice();
+		}
+		
+		Patient p = patientdb.getPatient(patientid);
+		p.setWallet(p.getWallet()+subtotal);
+		patientdb.updatePatient(p);
+		
+		Order o = orderdb.getOrder(patientid, orderid);
+		o.setDone(true);
+		orderdb.updateOrder(o);
+		return new Status(false);
+	}
+
+	
+	
+	
+	
 	
 	
 ////////////////////////////////////////////////////////////////////////////////////////

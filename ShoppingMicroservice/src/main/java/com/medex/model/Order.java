@@ -15,14 +15,17 @@ public class Order {
 	int patientID;
 	@Column(name="inProgress")
 	boolean inProgress = false;
+	@Column(name="done")
+	boolean done = false;
 
 	public Order() {}
 
 	//Non default constructor
-	public Order(int id, int apatientID, boolean ainProgress) {
+	public Order(int id, int apatientID, boolean ainProgress, boolean adone) {
 		this.id = id;
 		this.patientID = apatientID;
 		this.inProgress = ainProgress;
+		this.done = adone;
 	}
 	public int getId()
 	{
@@ -54,6 +57,14 @@ public class Order {
 	
 	public void setPatientID(int patientID) {
 		this.patientID = patientID;
+	}
+
+	public boolean getDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 	
 	

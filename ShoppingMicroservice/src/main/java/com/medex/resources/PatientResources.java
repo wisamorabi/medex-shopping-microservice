@@ -57,6 +57,15 @@ public class PatientResources {
 		return patientService.updatePatient(Patient);
 	}
 
+	
+	@Path("{Patientid}/Pay")
+	public Status payForCart(@PathParam("Patientid") int patientid)
+	{
+		return patientService.pay(patientid);
+	}
+	
+	
+	
 	@DELETE
 	@Path("{Patientid}")
 	public Status removePatient(@PathParam("Patientid") int id, Patient Patient) {
@@ -77,4 +86,5 @@ public class PatientResources {
 	{
 		return new PrescriptionResources();
 	}
+
 }

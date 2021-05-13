@@ -17,22 +17,25 @@ public class OrderInfo {
 	int id;
 	int patientID;
 	boolean inProgress;
+	boolean done = false;
 	
 	Map<Integer, OrderItem> orderItems = new HashMap<>(); 
 
 	public OrderInfo() {}
 
 	//Non default constructor
-	public OrderInfo(int id, int apatientID, boolean ainProgress) {
+	public OrderInfo(int id, int apatientID, boolean ainProgress, boolean adone) {
 		this.id = id;
 		this.patientID = apatientID;
 		this.inProgress = ainProgress;
+		this.done = adone;
 	}
 	public OrderInfo(Order o)
 	{
 		this.id = o.getId();
 		this.patientID = o.getPatientID();
 		this.inProgress = o.getInProgress();
+		this.done = o.getDone();
 	}
 	public int getId()
 	{
