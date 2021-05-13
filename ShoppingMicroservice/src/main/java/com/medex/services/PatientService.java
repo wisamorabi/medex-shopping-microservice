@@ -1,5 +1,6 @@
 package com.medex.services;
 
+import java.awt.SystemColor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class PatientService {
 	{
 		List<Patient> patientList = patientdb.getPatients(); //Get all hosts.
 		List<PatientInfo> patientinfoList = new ArrayList<PatientInfo>(); //Make a list that contains HostInfo instances
-		if (patientList.isEmpty() == false) return null;	
+		if (patientList.isEmpty() == true) return null;
 		for (Patient p : patientList)
 			patientinfoList.add(PatientToPatientInfo(p));
 		return patientinfoList;

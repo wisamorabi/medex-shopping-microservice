@@ -12,7 +12,7 @@ import com.medex.dependentresources.Prescription;
 import com.medex.model.OrderItem;
 import com.medex.model.Patient;
 import com.medex.model.CartItem;
-import com.medex.model.Order;
+import com.medex.model.Ordr;
 
 //This is the "backend" of our resources. This is where the logic is executed; the logic is basic since the database handles itself very well.
 public class OrderService {
@@ -27,10 +27,10 @@ public class OrderService {
 	
 	public List<OrderInfo>getAllOrders(int patientid)
 	{
-		List<Order> orderList = orderdb.getOrders(patientid); //Get all hosts.
+		List<Ordr> orderList = orderdb.getOrders(patientid); //Get all hosts.
 		List<OrderInfo> orderinfoList = new ArrayList<OrderInfo>(); //Make a list that contains HostInfo instances
-		if (orderList.isEmpty() == false) return null;	
-		for (Order o : orderList) {
+		if (orderList.isEmpty() == true) return null;	
+		for (Ordr o : orderList) {
 			orderinfoList.add(OrderToOrderInfo(patientid, o));
 			}		
 		return orderinfoList;
@@ -38,12 +38,12 @@ public class OrderService {
 	
 	public OrderInfo getOrder(int patientid, int orderid)
 	{
-		Order order = orderdb.getOrder(patientid, orderid); //Get all hosts.
+		Ordr order = orderdb.getOrder(patientid, orderid); //Get all hosts.
 		if (order == null) return null;
 		return OrderToOrderInfo(patientid, order);
 	}
 	
-	public OrderInfo addOrder(int patientid, Order order)
+	public OrderInfo addOrder(int patientid, Ordr order)
 	{
 		order.setPatientId(patientid);
 		if (patientdb.getPatient(patientid) == null) return null;
@@ -51,7 +51,7 @@ public class OrderService {
 		return OrderToOrderInfo(patientid, order);
 	}
 	
-	public OrderInfo updateOrder(int patientid, int orderid, Order order)
+	public OrderInfo updateOrder(int patientid, int orderid, Ordr order)
 	{
 		if (patientdb.getPatient(patientid) == null) return null;
 		if (orderdb.getOrder(patientid, orderid) == null) return null;
@@ -96,7 +96,7 @@ public class OrderService {
 		p.setWallet(p.getWallet()+subtotal);
 		patientdb.updatePatient(p);
 		
-		Order o = orderdb.getOrder(patientid, orderid);
+		Ordr o = orderdb.getOrder(patientid, orderid);
 		o.setDone(true);
 		orderdb.updateOrder(o);
 		return new Status(false);
@@ -123,7 +123,7 @@ public class OrderService {
 	}
 	
 	
-	private OrderInfo OrderToOrderInfo(int patientid, Order aOrder)
+	private OrderInfo OrderToOrderInfo(int patientid, Ordr aOrder)
 	{
 		OrderInfo orderInfo = new OrderInfo(aOrder);
 		List<OrderItem> lst = orderItemService.getAllOrderItems(patientid, aOrder.getId()); //For every host, get the list of VMs it holds and attach that to the hashmap of VMs that each instance of HostInfo has.

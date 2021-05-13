@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.persistence.*;
 
-import com.medex.model.Order;
+import com.medex.model.Ordr;
 import com.medex.model.OrderItem;
 
 
@@ -30,7 +30,7 @@ public class OrderInfo {
 		this.inProgress = ainProgress;
 		this.done = adone;
 	}
-	public OrderInfo(Order o)
+	public OrderInfo(Ordr o)
 	{
 		this.id = o.getId();
 		this.patientID = o.getPatientID();

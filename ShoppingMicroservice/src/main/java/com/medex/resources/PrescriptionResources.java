@@ -18,7 +18,6 @@ import com.medex.services.PrescriptionService;
 
 
 //Request resources which acts as a layer before our Prescription services
-@Path("/")
 public class PrescriptionResources {
 	PrescriptionService prescriptionService = new PrescriptionService();
 
@@ -35,8 +34,8 @@ public class PrescriptionResources {
 	@GET
 	@Path("{Prescriptionid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Prescription getPrescription(@PathParam("patientid") int patientid, @PathParam("Prescriptionid") int cartitemid) {
-		return prescriptionService.getPrescription(patientid, cartitemid);
+	public Prescription getPrescription(@PathParam("Patientid") int patientid, @PathParam("Prescriptionid") int prescriptionid) {
+		return prescriptionService.getPrescription(patientid, prescriptionid);
 	}
 
 	@POST

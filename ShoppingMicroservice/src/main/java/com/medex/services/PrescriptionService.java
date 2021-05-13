@@ -31,12 +31,13 @@ public class PrescriptionService {
 	}
 	
 	
-	public Prescription addPrescription(int patientid, Prescription cartitem) {
-		cartitem.setPatientID(patientid);
+	public Prescription addPrescription(int patientid, Prescription prescription) {
+		prescription.setPatientID(patientid);
 		if (patientdb.getPatient(patientid) == null) return null;
-		if (pharmaceuticalDB.getPharmaceutical(cartitem.getPharmaceuticalID()) == null) return null;
-		prescriptiondb.insertPrescription(cartitem);
-		return cartitem;
+		System.out.println("X");
+		if (pharmaceuticalDB.getPharmaceutical(prescription.getPharmaceuticalID()) == null) return null;
+		prescriptiondb.insertPrescription(prescription);
+		return prescription;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////
 	

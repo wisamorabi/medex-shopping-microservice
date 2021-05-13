@@ -15,12 +15,12 @@ import javax.ws.rs.core.MediaType;
 import com.medex.communicationmodules.OrderInfo;
 import com.medex.communicationmodules.Status;
 import com.medex.dependentresources.Prescription;
-import com.medex.model.Order;
+import com.medex.model.Ordr;
 import com.medex.services.OrderService;
 
 
 //Request resources which acts as a layer before our Order services
-@Path("/")
+
 public class OrderResources {
 	OrderService orderService = new OrderService();
 
@@ -48,7 +48,7 @@ public class OrderResources {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OrderInfo addOrder(@PathParam("Patientid")int patientid, Order order) {
+	public OrderInfo addOrder(@PathParam("Patientid")int patientid, Ordr order) {
 		return orderService.addOrder(patientid, order);
 	}
 	
@@ -58,7 +58,9 @@ public class OrderResources {
 	@Path("{Orderid}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OrderInfo updateOrder(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid, Order order) {
+	public OrderInfo updateOrder(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid, Ordr order) {
+		order.setId(orderid);
+		order.setPatientId(patientid);
 		return orderService.updateOrder(patientid, orderid, order);
 	}
 
@@ -69,15 +71,15 @@ public class OrderResources {
 	}
 
 	
-	@Path("{Orderid}/OrderItems")
-	public OrderResources getOrderItems()
+	@Path("{Orderid}/orderItems")
+	public OrderItemResources getOrderItems()
 	{
-		return new OrderResources();
+		return new OrderItemResources();
 	}
 	
 	
 	@GET
-	@Path("{Orderid}/Refund")
+	@Path("{Orderid}/refund")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Status getPrescriptions(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid) {
 		return orderService.Refund(patientid, orderid);

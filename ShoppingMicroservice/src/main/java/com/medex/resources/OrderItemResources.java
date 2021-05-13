@@ -51,6 +51,9 @@ public class OrderItemResources {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public OrderItem updateOrderItem(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid, @PathParam("OrderItemid") int orderitemid, OrderItem orderitem) {
+		orderitem.setId(orderitemid);
+		orderitem.setPatientID(patientid);
+		orderitem.setOrderID(orderid);
 		return orderItemService.updateOrderItem(patientid, orderid, orderitemid, orderitem);
 	}
 

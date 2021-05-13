@@ -14,7 +14,7 @@ public class CartItemDB {
 	public void insertCartItem(CartItem cartItem)
 	{
 		Transaction transaction = null; //You have to make a transaction object
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
+		try (Session session = HibernateUtil.getShoppingSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
 		{
 			// start a transaction using the session
 			transaction = session.beginTransaction();
@@ -39,7 +39,7 @@ public class CartItemDB {
 	public void updateCartItem(CartItem cartItem)
 	{
 		Transaction transaction = null; //You have to make a transaction object
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
+		try (Session session = HibernateUtil.getShoppingSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
 		{
 			// start a transaction using the session
 			transaction = session.beginTransaction();
@@ -67,7 +67,7 @@ public class CartItemDB {
 	{
 		Transaction transaction = null; //You have to make a transaction object
 		CartItem cartItem = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
+		try (Session session = HibernateUtil.getShoppingSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
 		{
 			// start a transaction using the session
 			transaction = session.beginTransaction();
@@ -95,10 +95,10 @@ public class CartItemDB {
 		Transaction transaction = null;
 		List<CartItem> cartItems = null;
 		
-		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		try (Session session = HibernateUtil.getShoppingSessionFactory().openSession())
 		{
 			transaction = session.beginTransaction();
-			cartItems = session.createQuery("from CartItem as C where C.patientid = :patientid", CartItem.class).setParameter("patientid", patientid).list(); //This is a hibernate query (Get all cartItems from the cartItems database)
+			cartItems = session.createQuery("from CartItem C where C.patientID = :patientid", CartItem.class).setParameter("patientid", patientid).list(); //This is a hibernate query (Get all cartItems from the cartItems database)
 																		 //Each returned row is a cartItem object inserted into the list of cartItems --> cartItems
 			transaction.commit();
 		}
@@ -109,13 +109,13 @@ public class CartItemDB {
 	{
 		Transaction transaction = null;
 		CartItem cartItem = null;
-		try (Session session = HibernateUtil.getSessionFactory().openSession())
+		try (Session session = HibernateUtil.getShoppingSessionFactory().openSession())
 		{
 			//start a transaction
 			transaction = session.beginTransaction();
 			
 			// get one object
-			String hql = " FROM CartItem C WHERE C.id = :cartitemid AND C.patientid = :patientid"; //From the cartItem table
+			String hql = " FROM CartItem C WHERE C.id = :cartitemid AND C.patientID = :patientid"; //From the cartItem table
 			Query query = session.createQuery(hql);
 			query.setParameter("patientid", patientid); //The parameter ":id" is set to the id we passed.
 			query.setParameter("cartitemid", cartitemid); //The parameter ":id" is set to the id we passed.

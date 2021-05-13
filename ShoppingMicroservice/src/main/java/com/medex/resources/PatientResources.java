@@ -20,7 +20,7 @@ import com.medex.services.PatientService;
 
 
 //Request resources which acts as a layer before our Patient services
-@Path("/Patients")
+@Path("/patients")
 public class PatientResources {
 	PatientService patientService = new PatientService();
 
@@ -58,7 +58,7 @@ public class PatientResources {
 	}
 
 	
-	@Path("{Patientid}/Pay")
+	@Path("{Patientid}/pay")
 	public Status payForCart(@PathParam("Patientid") int patientid)
 	{
 		return patientService.pay(patientid);
@@ -71,17 +71,17 @@ public class PatientResources {
 	public Status removePatient(@PathParam("Patientid") int id, Patient Patient) {
 		return patientService.removePatient(id);
 	}
-	@Path("{Patientid}/CartItems")
+	@Path("{Patientid}/cartItems")
 	public CartItemResources getCartItems(@PathParam("Patientid")int id)
 	{
 		return new CartItemResources();
 	}
-	@Path("{Patientid}/Orders")
+	@Path("{Patientid}/orders")
 	public OrderResources getOrders()
 	{
 		return new OrderResources();
 	}
-	@Path("{Patientid}/Prescriptions")
+	@Path("{Patientid}/prescriptions")
 	public PrescriptionResources getPrescriptions()
 	{
 		return new PrescriptionResources();

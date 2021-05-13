@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.persistence.*;
 
 import com.medex.model.CartItem;
-import com.medex.model.Order;
+import com.medex.model.Ordr;
 import com.medex.model.Patient;
 
 

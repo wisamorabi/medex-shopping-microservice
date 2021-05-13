@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 //The order class
 @Entity //A 'serializable' entity
-@Table(name = "Order") //Where this entity will be placed
+@Table(name = "Ordr") //Where this entity will be placed
 //Now, the fields that we will annotate will be stored in the hosts table.
-public class Order {
+public class Ordr {
 	@Id //Primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //"Do this identification for me, generate that specific ID for me
 	@Column(name="id") //Which column?
@@ -18,10 +18,10 @@ public class Order {
 	@Column(name="done")
 	boolean done = false;
 
-	public Order() {}
+	public Ordr() {}
 
 	//Non default constructor
-	public Order(int id, int apatientID, boolean ainProgress, boolean adone) {
+	public Ordr(int id, int apatientID, boolean ainProgress, boolean adone) {
 		this.id = id;
 		this.patientID = apatientID;
 		this.inProgress = ainProgress;

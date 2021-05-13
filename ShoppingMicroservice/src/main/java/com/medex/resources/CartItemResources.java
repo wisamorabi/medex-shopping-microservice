@@ -18,7 +18,7 @@ import com.medex.services.CartItemService;
 
 
 //Request resources which acts as a layer before our CartItem services
-@Path("/")
+
 public class CartItemResources {
 	CartItemService cartItemService = new CartItemService();
 
@@ -35,7 +35,7 @@ public class CartItemResources {
 	@GET
 	@Path("{CartItemid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public CartItem getCartItem(@PathParam("patientid") int patientid, @PathParam("CartItemid") int cartitemid) {
+	public CartItem getCartItem(@PathParam("Patientid") int patientid, @PathParam("CartItemid") int cartitemid) {
 		return cartItemService.getCartItem(patientid, cartitemid);
 	}
 
@@ -68,6 +68,7 @@ public class CartItemResources {
 	@Produces(MediaType.APPLICATION_JSON)
 	public CartItem updateCartItem(@PathParam("Patientid")int patientid, @PathParam("CartItemid") int cartitemid, CartItem cartitem)
 	{
+		cartitem.setId(cartitemid);
 		return cartItemService.updateCartItem(patientid, cartitemid, cartitem);
 	}
 }
