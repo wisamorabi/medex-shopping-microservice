@@ -115,6 +115,7 @@ public class OrderDB {
 			transaction = session.beginTransaction();
 			// get one object
 			String hql = "FROM Ordr H WHERE H.id = :orderid and H.patientID = :patientid"; //From the order table
+			
 			Query query = session.createQuery(hql);
 
 			query.setParameter("orderid", orderid); //The parameter ":id" is set to the id we passed.
