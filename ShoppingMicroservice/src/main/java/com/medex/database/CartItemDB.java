@@ -7,11 +7,11 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.medex.model.Personnel;
+import com.medex.model.CartItem;
 
-//This class is specifically for the personnels database operations
-public class PersonnelDB {
-	public void insertPersonnel(Personnel personnel)
+//This class is specifically for the cartItems database operations
+public class CartItemDB {
+	public void insertCartItem(CartItem cartItem)
 	{
 		Transaction transaction = null; //You have to make a transaction object
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
@@ -19,8 +19,8 @@ public class PersonnelDB {
 			// start a transaction using the session
 			transaction = session.beginTransaction();
 			
-			session.save(personnel); //Save transaction allows us to store the personnel object into the database (This is like insert with the fields, etc, etc)
-								   //But hibernate knows what to do using the annotation on the personnel class
+			session.save(cartItem); //Save transaction allows us to store the cartItem object into the database (This is like insert with the fields, etc, etc)
+								   //But hibernate knows what to do using the annotation on the cartItem class
 			
 			// commit transaction		
 			transaction.commit(); //Finalize transaction
@@ -35,8 +35,8 @@ public class PersonnelDB {
 		}
 	}
 	
-	//This is the update, which personnel we want to delete
-	public void updatePersonnel(Personnel personnel)
+	//This is the update, which cartItem we want to delete
+	public void updateCartItem(CartItem cartItem)
 	{
 		Transaction transaction = null; //You have to make a transaction object
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
@@ -44,8 +44,8 @@ public class PersonnelDB {
 			// start a transaction using the session
 			transaction = session.beginTransaction();
 			
-			session.saveOrUpdate(personnel); //Save transaction allows us to store the personnel object into the database (This is like insert with the fields, etc, etc)
-										   //But hibernate knows what to do using the annotation on the personnel class
+			session.saveOrUpdate(cartItem); //Save transaction allows us to store the cartItem object into the database (This is like insert with the fields, etc, etc)
+										   //But hibernate knows what to do using the annotation on the cartItem class
 			
 			// commit transaction
 			
@@ -63,18 +63,18 @@ public class PersonnelDB {
 	
 	
 	//Id of what you want to delete
-	public void deletePersonnel(int id)
+	public void deleteCartItem(int id)
 	{
 		Transaction transaction = null; //You have to make a transaction object
-		Personnel personnel = null;
+		CartItem cartItem = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
 		{
 			// start a transaction using the session
 			transaction = session.beginTransaction();
 			
-			personnel = session.get(Personnel.class, id); //We have to get the specific personnel using the ID from the database, so we can delete it
+			cartItem = session.get(CartItem.class, id); //We have to get the specific cartItem using the ID from the database, so we can delete it
 			
-			session.delete(personnel); //We delete that personnel
+			session.delete(cartItem); //We delete that cartItem
 			
 			// commit transaction
 			transaction.commit(); //Finalize transaction
@@ -89,42 +89,43 @@ public class PersonnelDB {
 		}
 	}
 
-	//Retrieve all personnels from the database and store them in a list
-	public List<Personnel> getPersonnels()
+	//Retrieve all cartItems from the database and store them in a list
+	public List<CartItem> getCartItems(int patientid)
 	{
 		Transaction transaction = null;
-		List<Personnel> personnels = null;
+		List<CartItem> cartItems = null;
 		
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			transaction = session.beginTransaction();
-			personnels = session.createQuery("from Personnel", Personnel.class).list(); //This is a hibernate query (Get all personnels from the personnels database)
-																		 //Each returned row is a personnel object inserted into the list of personnels --> personnels
+			cartItems = session.createQuery("from CartItem as C where C.patientid = :patientid", CartItem.class).setParameter("patientid", patientid).list(); //This is a hibernate query (Get all cartItems from the cartItems database)
+																		 //Each returned row is a cartItem object inserted into the list of cartItems --> cartItems
 			transaction.commit();
 		}
-		return personnels;
+		return cartItems;
 	}
 	
-	public Personnel getPersonnel(int id)
+	public CartItem getCartItem(int patientid, int cartitemid)
 	{
 		Transaction transaction = null;
-		Personnel personnel = null;
+		CartItem cartItem = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
 		{
 			//start a transaction
 			transaction = session.beginTransaction();
 			
 			// get one object
-			String hql = " FROM Personnel H WHERE H.id = :id"; //From the personnel table
+			String hql = " FROM CartItem C WHERE C.id = :cartitemid AND C.patientid = :patientid"; //From the cartItem table
 			Query query = session.createQuery(hql);
-			query.setParameter("id", id); //The parameter ":id" is set to the id we passed.
+			query.setParameter("patientid", patientid); //The parameter ":id" is set to the id we passed.
+			query.setParameter("cartitemid", cartitemid); //The parameter ":id" is set to the id we passed.
 			List results = query.getResultList(); //The results are given to us in a list.
 												  //Since the id is unique, we will get a list of one item
 			
-			//If the result is not null, we get a single personnel object
+			//If the result is not null, we get a single cartItem object
 			if (results != null && !results.isEmpty())
 			{
-				personnel = (Personnel) results.get(0); //So, we retrieve said personnel from the first index in the list
+				cartItem = (CartItem) results.get(0); //So, we retrieve said cartItem from the first index in the list
 			}
 			//commit transaction
 			transaction.commit();
@@ -137,7 +138,7 @@ public class PersonnelDB {
 			}
 			e.printStackTrace();
 		}
-		return personnel; //Return the personnel object retrieved
+		return cartItem; //Return the cartItem object retrieved
 	}
 	
 }

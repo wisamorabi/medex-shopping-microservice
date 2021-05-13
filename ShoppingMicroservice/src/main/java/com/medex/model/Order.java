@@ -2,41 +2,39 @@ package com.medex.model;
 
 import javax.persistence.*;
 
-//The Doctor class
-//Type = 2
+//The order class
 @Entity //A 'serializable' entity
-@Table(name = "Doctor") //Where this entity will be placed
+@Table(name = "Order") //Where this entity will be placed
 //Now, the fields that we will annotate will be stored in the hosts table.
-public class Doctor {
+public class Order {
 	@Id //Primary key
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //"Do this identification for me, generate that specific ID for me
 	@Column(name="id") //Which column?
 	int id;
-	@Column(name="consumerID")
-	int consumerID;
+	@Column(name="patientID")
+	int patientID;
 
-
-	public Doctor() {}
+	public Order() {}
 
 	//Non default constructor
-	public Doctor(int id, int aconsumerID) {
+	public Order(int id, int apatientID) {
 		this.id = id;
-		this.consumerID = aconsumerID;
+		this.patientID = apatientID;
 	}
 	public int getId()
 	{
 		return id;
 	}
-	public int getConsumerID()
+	public int getPatientID()
 	{
-		return consumerID;
+		return patientID;
 	}
 	public void setId(int id)
 	{
 		this.id = id;
 	}
-	public void setConsumerID(int aconsumerID)
+	public void setPatientId(int apatientID)
 	{
-		this.consumerID = aconsumerID;
+		this.patientID = apatientID;
 	}
 }
