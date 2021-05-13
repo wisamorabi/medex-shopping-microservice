@@ -72,4 +72,9 @@ public class PatientResources {
 	{
 		return new OrderResources();
 	}
+	@Path("{Patientid}/Prescriptions")
+	public PrescriptionResources getPrescriptions()
+	{
+		return new PrescriptionResources();
+	}
 }

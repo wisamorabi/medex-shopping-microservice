@@ -13,13 +13,16 @@ public class Order {
 	int id;
 	@Column(name="patientID")
 	int patientID;
+	@Column(name="inProgress")
+	boolean inProgress = false;
 
 	public Order() {}
 
 	//Non default constructor
-	public Order(int id, int apatientID) {
+	public Order(int id, int apatientID, boolean ainProgress) {
 		this.id = id;
 		this.patientID = apatientID;
+		this.inProgress = ainProgress;
 	}
 	public int getId()
 	{
@@ -37,4 +40,21 @@ public class Order {
 	{
 		this.patientID = apatientID;
 	}
+
+	public boolean isInProgress() {
+		return inProgress;
+	}
+
+	public void setInProgress(boolean inProgress) {
+		this.inProgress = inProgress;
+	}
+	public boolean getInProgress() {
+		return inProgress;
+	}
+	
+	public void setPatientID(int patientID) {
+		this.patientID = patientID;
+	}
+	
+	
 }

@@ -16,20 +16,23 @@ import com.medex.model.OrderItem;
 public class OrderInfo {
 	int id;
 	int patientID;
+	boolean inProgress;
 	
 	Map<Integer, OrderItem> orderItems = new HashMap<>(); 
 
 	public OrderInfo() {}
 
 	//Non default constructor
-	public OrderInfo(int id, int apatientID) {
+	public OrderInfo(int id, int apatientID, boolean ainProgress) {
 		this.id = id;
 		this.patientID = apatientID;
+		this.inProgress = ainProgress;
 	}
 	public OrderInfo(Order o)
 	{
 		this.id = o.getId();
 		this.patientID = o.getPatientID();
+		this.inProgress = o.getInProgress();
 	}
 	public int getId()
 	{
@@ -58,4 +61,17 @@ public class OrderInfo {
 	{
 		return orderItems;
 	}
+
+	public boolean getInProgress() {
+		return inProgress;
+	}
+
+	public void setInProgress(boolean inProgress) {
+		this.inProgress = inProgress;
+	}
+
+	public void setPatientID(int patientID) {
+		this.patientID = patientID;
+	}
+	
 }

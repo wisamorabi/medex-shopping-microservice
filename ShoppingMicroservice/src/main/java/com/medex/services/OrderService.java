@@ -68,6 +68,8 @@ public class OrderService {
 		orderdb.deleteOrder(orderid);
 		return new Status(true);
 	}
+	
+	
 	private OrderInfo OrderToOrderInfo(int patientid, Order aOrder)
 	{
 		OrderInfo orderInfo = new OrderInfo(aOrder);
