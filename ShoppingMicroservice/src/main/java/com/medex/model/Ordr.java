@@ -17,15 +17,21 @@ public class Ordr {
 	boolean inProgress = false;
 	@Column(name="done")
 	boolean done = false;
+	@Column(name="lat")
+	float lat = 0.0f;
+	@Column(name="lon")
+	float lon = 0.0f;
 
 	public Ordr() {}
 
 	//Non default constructor
-	public Ordr(int id, int apatientID, boolean ainProgress, boolean adone) {
+	public Ordr(int id, int apatientID, boolean ainProgress, boolean adone, float lat, float lon) {
 		this.id = id;
 		this.patientID = apatientID;
 		this.inProgress = ainProgress;
 		this.done = adone;
+		this.lat = lat;
+		this.lon = lon;
 	}
 	public int getId()
 	{
@@ -65,6 +71,22 @@ public class Ordr {
 
 	public void setDone(boolean done) {
 		this.done = done;
+	}
+
+	public float getLat() {
+		return lat;
+	}
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+	public float getLon() {
+		return lon;
+	}
+
+	public void setLon(float lon) {
+		this.lon = lon;
 	}
 	
 	

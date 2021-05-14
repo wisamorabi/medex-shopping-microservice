@@ -22,15 +22,22 @@ public class OrderItem {
 	int count;
 	@Column(name="pharmacyID")
 	int pharmacyID;
+	@Column(name="price")
+	int price;
+	@Column(name="name")
+	String name;
+	
 	
 	public OrderItem() {}
 
 	//Non default constructor
-	public OrderItem(int orderID, int amedicineID, int acount, int apatientID, int aPharmacyID) {
+	public OrderItem(int orderID, int amedicineID, int acount, int apatientID, int aPharmacyID, String name, int price) {
 		this.orderID = orderID;
 		this.patientID = apatientID;
 		this.medicineID = amedicineID;
 		this.count = acount;
+		this.name = name;
+		this.price = price;
 		this.pharmacyID = aPharmacyID;
 	}
 	public int getOrderID()
@@ -79,6 +86,22 @@ public class OrderItem {
 
 	public void setPharmacyID(int pharmacyID) {
 		this.pharmacyID = pharmacyID;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

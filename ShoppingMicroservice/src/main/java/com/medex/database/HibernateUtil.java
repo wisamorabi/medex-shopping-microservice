@@ -9,6 +9,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.medex.dependentresources.Pharmaceutical;
 import com.medex.dependentresources.PharmaceuticalStock;
+import com.medex.dependentresources.Pharmacy;
 import com.medex.dependentresources.Prescription;
 import com.medex.model.CartItem;
 
@@ -91,6 +92,7 @@ public class HibernateUtil {
 				configuration.setProperties(settings); //Applying the settings to the configuration object
 
 				configuration.addAnnotatedClass(Pharmaceutical.class); //The patient class is the one that has the annotation, this is what we consider when saving to the database.
+				configuration.addAnnotatedClass(Pharmacy.class); //The patient class is the one that has the annotation, this is what we consider when saving to the database.
 				configuration.addAnnotatedClass(PharmaceuticalStock.class); //The patient class is the one that has the annotation, this is what we consider when saving to the database.
 
 				//If we have multiple classes then we do configuration.addAnnotatedClass(X.class) again.

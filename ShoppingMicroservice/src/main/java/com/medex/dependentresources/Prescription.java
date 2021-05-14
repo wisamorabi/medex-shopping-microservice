@@ -14,6 +14,8 @@ public class Prescription {
 	int id;
 	@Column(name="pharmaceuticalID")
 	int pharmaceuticalID;
+	@Column(name="name")
+	String name;
 	@Column(name="doctorID")
 	int doctorID;
 	@Column(name="patientID")
@@ -27,13 +29,14 @@ public class Prescription {
 	public Prescription() {}
 
 	//Non default constructor
-	public Prescription(int id, int apharmaceuticalID, int adoctorID, int apatientID, int acount, boolean aactive) {
+	public Prescription(int id, int apharmaceuticalID, int adoctorID, int apatientID, int acount, boolean aactive, String name) {
 		this.id = id;
 		this.pharmaceuticalID = apharmaceuticalID;
 		this.doctorID = adoctorID;
 		this.patientID = apatientID;
 		this.count = acount;
 		this.active = aactive;
+		this.name = name;
 		if (count == 0) active = false;
 	}
 	public int getId() {
@@ -75,6 +78,14 @@ public class Prescription {
 	public void setCount(int count) {
 		if (count == 0) active = false;
 		this.count = count;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 

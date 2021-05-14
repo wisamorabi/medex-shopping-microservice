@@ -86,5 +86,10 @@ public class PatientResources {
 	{
 		return new PrescriptionResources();
 	}
+	@Path("{Patientid}/pharmacies")
+	public PharmacyResources getPharmacies()
+	{
+		return new PharmacyResources();
+	}
 
 }
