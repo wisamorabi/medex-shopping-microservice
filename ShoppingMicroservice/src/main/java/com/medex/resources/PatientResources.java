@@ -65,6 +65,13 @@ public class PatientResources {
 	}
 	
 	
+	@Path("/login/{username}/{password}")
+	public Patient getPatientLogin(@PathParam("username") String username, @PathParam("password") String password)
+	{
+		return patientService.getPatientLogin(username, password);
+	}
+	
+	
 	
 	@DELETE
 	@Path("{Patientid}")
@@ -85,11 +92,6 @@ public class PatientResources {
 	public PrescriptionResources getPrescriptions()
 	{
 		return new PrescriptionResources();
-	}
-	@Path("{Patientid}/pharmacies")
-	public PharmacyResources getPharmacies()
-	{
-		return new PharmacyResources();
 	}
 
 }

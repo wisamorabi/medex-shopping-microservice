@@ -19,19 +19,22 @@ public class CartItem {
 	String name;
 	@Column(name="pharmacyID")
 	int pharmacyID;
+	@Column(name="pharmacyName")
+	String pharmacyName;
 	@Column(name="count")
 	int count;
 	
 	public CartItem() {}
 
 	//Non default constructor
-	public CartItem(int id, int amedicineID, int apharmacyID, int acount, int apatientID, String name) {
+	public CartItem(int id, int amedicineID, int apharmacyID, int acount, int apatientID, String name, String pharmacyName) {
 		this.id = id;
 		this.medicineID = amedicineID;
 		this.pharmacyID = apharmacyID;
 		this.count = acount;
 		this.patientID = apatientID;
 		this.name = name;
+		this.pharmacyName = pharmacyName;
 	}
 	public int getId()
 	{
@@ -78,6 +81,14 @@ public class CartItem {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPharmacyName() {
+		return pharmacyName;
+	}
+
+	public void setPharmacyName(String pharmacyName) {
+		this.pharmacyName = pharmacyName;
 	}
 	
 }

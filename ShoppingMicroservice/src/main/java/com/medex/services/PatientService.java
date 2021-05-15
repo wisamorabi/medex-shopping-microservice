@@ -45,6 +45,13 @@ public class PatientService {
 		return PatientToPatientInfo(patient);
 	}
 	
+	
+	public Patient getPatientLogin(String username, String password)
+	{
+		return patientdb.getPatientLogin(username, password); //Get all hosts.
+
+	}
+	
 	public PatientInfo addPatient(Patient aPatient)
 	{
 		patientdb.insertPatient(aPatient);

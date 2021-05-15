@@ -31,7 +31,8 @@ public class OrderItem {
 	public OrderItem() {}
 
 	//Non default constructor
-	public OrderItem(int orderID, int amedicineID, int acount, int apatientID, int aPharmacyID, String name, int price) {
+	public OrderItem(int orderID, int amedicineID, int acount, int apatientID, int aPharmacyID, String name, int price, int id) {
+		this.id = id;
 		this.orderID = orderID;
 		this.patientID = apatientID;
 		this.medicineID = amedicineID;
