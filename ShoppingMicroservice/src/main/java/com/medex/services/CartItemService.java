@@ -35,6 +35,18 @@ public class CartItemService {
 		cartitem.setPatientID(patientid);
 		if (patientdb.getPatient(patientid) == null) return null;
 		if (pharmaceuticalDB.getPharmaceutical(cartitem.getMedicineID()) == null) return null;
+		
+		List<CartItem> lst = cartItemdb.getCartItems(patientid);
+		if (!lst.isEmpty())
+		{
+			for (CartItem l : lst)
+			{
+				if (cartitem.getMedicineID() == l.getMedicineID())
+				{
+					return null;
+				}
+			}
+		}
 		cartItemdb.insertCartItem(cartitem);
 		return cartitem;
 	}
@@ -59,6 +71,14 @@ public class CartItemService {
 		if (patientdb.getPatient(patientid) == null) return new Status(false);
 		if (cartItemdb.getCartItem(patientid, cartitemid) == null) return new Status(false);
 		cartItemdb.deleteCartItem(cartitemid);
+		return new Status(true);
+	}
+	
+	
+	public Status removeCartItems(int patientid)
+	{
+		if (patientdb.getPatient(patientid) == null) return new Status(false);
+		cartItemdb.deleteCartItems(patientid);
 		return new Status(true);
 	}
 	

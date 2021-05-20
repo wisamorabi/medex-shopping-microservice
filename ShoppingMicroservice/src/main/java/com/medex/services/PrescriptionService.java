@@ -12,7 +12,7 @@ import com.medex.database.PharmaceuticalDB;
 public class PrescriptionService {
 	PrescriptionDB prescriptiondb = new PrescriptionDB(); //(Instead of the pseudo-database)
 	PatientDB patientdb = new PatientDB(); //(Instead of the pseudo-database)
-	PharmaceuticalDB pharmaceuticalDB = new PharmaceuticalDB(); //(Instead of the pseudo-database)
+	PharmaceuticalDB pharmaceuticaldb = new PharmaceuticalDB(); //(Instead of the pseudo-database)
 	
 	public PrescriptionService() {} 
 	
@@ -30,6 +30,12 @@ public class PrescriptionService {
 		return prescriptiondb.getPrescription(patientid, prescriptionid);
 	}
 
+	
+	public Prescription updatePrescription(Prescription aPrescription)
+	{
+		prescriptiondb.updatePrescription(aPrescription);
+		return aPrescription;
+	}
 	
 }
 

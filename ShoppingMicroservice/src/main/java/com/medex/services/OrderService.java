@@ -62,16 +62,17 @@ public class OrderService {
 	
 	public Status Refund(int patientid, int orderid)
 	{
-		if (patientdb.getPatient(patientid) == null) return null;
-		if (orderdb.getOrder(patientid, orderid) == null) return null;
-		
+		if (patientdb.getPatient(patientid) == null) return new Status(false);
+		if (orderdb.getOrder(patientid, orderid) == null) return new Status(false);
+		Ordr d = orderdb.getOrder(patientid, orderid);
+		if (d.getDone() == true || d.getInProgress() == true) return new Status(false);
 		
 		int subtotal = 0;
 		List<OrderItem> lst = orderItemService.getAllOrderItems(patientid, orderid);
 		List<Prescription> lst2 = prescriptionservice.getAllPrescriptions(patientid);
 		for (OrderItem oitem : lst)
 		{
-			if (pharmaceuticalstockdb.getPharmaceuticalStock(oitem.getPharmacyID(), oitem.getMedicineID()) == null) return new Status(false);
+			if (pharmaceuticalstockdb.getPharmaceuticalStock(oitem.getPharmacyID(), oitem.getMedicineID()) == null) return new Status(true);
 			int prescIDFound = -1;
 			for (Prescription p : lst2)
 			{
@@ -85,8 +86,9 @@ public class OrderService {
 			{
 				Prescription prescFound = prescriptionservice.getPrescription(patientid, prescIDFound);
 				prescFound.setCount(prescFound.getCount() + oitem.getCount());
+				prescriptionservice.updatePrescription(prescFound);
 			}
-			subtotal += oitem.getCount() * pharmaceuticalstockdb.getPharmaceuticalStock(oitem.getPharmacyID(), oitem.getMedicineID()).getMedicinePrice();
+			subtotal += oitem.getCount() * oitem.getPrice();
 		}
 		
 		Patient p = patientdb.getPatient(patientid);

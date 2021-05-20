@@ -78,7 +78,7 @@ public class OrderResources {
 	}
 	
 	
-	@GET
+	@DELETE
 	@Path("{Orderid}/refund")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Status getPrescriptions(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid) {

@@ -38,5 +38,7 @@ public class PrescriptionResources {
 		return prescriptionService.getPrescription(patientid, prescriptionid);
 	}
 
+	
+	
 
 }

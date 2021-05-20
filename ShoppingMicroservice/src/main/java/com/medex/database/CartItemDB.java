@@ -19,6 +19,8 @@ public class CartItemDB {
 			// start a transaction using the session
 			transaction = session.beginTransaction();
 			
+			//System.out.println(cartItem.getName() + " " + cartItem.getMedicineID() + " " + cartItem.getName() + cartItem.getPatientID() + " " + cartItem.getPharmacyName() + " " + cartItem.getCount() + " " + cartItem.getPharmacyID());
+			
 			session.save(cartItem); //Save transaction allows us to store the cartItem object into the database (This is like insert with the fields, etc, etc)
 								   //But hibernate knows what to do using the annotation on the cartItem class
 			
@@ -61,8 +63,7 @@ public class CartItemDB {
 		}
 	}
 	
-	
-	//Id of what you want to delete
+
 	public void deleteCartItem(int id)
 	{
 		Transaction transaction = null; //You have to make a transaction object
@@ -75,6 +76,33 @@ public class CartItemDB {
 			cartItem = session.get(CartItem.class, id); //We have to get the specific cartItem using the ID from the database, so we can delete it
 			
 			session.delete(cartItem); //We delete that cartItem
+			
+			// commit transaction
+			transaction.commit(); //Finalize transaction
+		}
+		catch (Exception e) //If anything goes wrong
+		{
+			if (transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	
+	//Id of what you want to delete
+	public void deleteCartItems(int patientid)
+	{
+		Transaction transaction = null; //You have to make a transaction object
+		try (Session session = HibernateUtil.getShoppingSessionFactory().openSession()) //And now we make a session using the HibernateUtil object
+		{
+			// start a transaction using the session
+			transaction = session.beginTransaction();
+			
+			String stringQuery = "DELETE FROM CartItem WHERE patientID = :patientid";
+			Query query = session.createQuery(stringQuery).setParameter("patientid", patientid);
+			query.executeUpdate();
+			//Id of what you want to delete
 			
 			// commit transaction
 			transaction.commit(); //Finalize transaction

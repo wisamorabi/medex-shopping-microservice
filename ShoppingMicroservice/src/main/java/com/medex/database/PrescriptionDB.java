@@ -143,4 +143,46 @@ public class PrescriptionDB {
 		return prescription; //Return the prescription object retrieved
 	}
 	
+	
+	
+	
+	public Prescription getPrescriptionWithMedicine(int doctorid, int patientid, int medicineid)
+	{
+		Transaction transaction = null;
+		Prescription prescription = null;
+		try (Session session = HibernateUtil.getDoctorSessionFactory().openSession())
+		{
+			//start a transaction
+			transaction = session.beginTransaction();
+			
+			// get one object
+			
+			String hql = "from Prescription P WHERE P.doctorID = :doctorid AND P.patientID = :patientid AND P.medicineID = :medicineid"; //From the prescription table
+			Query query = session.createQuery(hql);
+			query.setParameter("doctorid", doctorid); //The parameter ":id" is set to the id we passed.
+			query.setParameter("patientid", patientid); //The parameter ":id" is set to the id we passed.
+			query.setParameter("medicineid", medicineid); //The parameter ":id" is set to the id we passed.
+			List results = query.getResultList(); //The results are given to us in a list.
+												  //Since the id is unique, we will get a list of one item
+			
+			//If the result is not null, we get a single prescription object
+			if (results != null && !results.isEmpty())
+			{
+				prescription = (Prescription) results.get(0); //So, we retrieve said prescription from the first index in the list
+			}
+			//commit transaction
+			transaction.commit();
+		}
+		catch (Exception e)
+		{
+			if (transaction != null)
+			{
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return prescription; //Return the prescription object retrieved
+	}
+
+	
 }

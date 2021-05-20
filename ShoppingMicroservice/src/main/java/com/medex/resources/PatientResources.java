@@ -14,6 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.medex.communicationmodules.LatLon;
 import com.medex.communicationmodules.PatientInfo;
 import com.medex.communicationmodules.Status;
 import com.medex.model.Patient;
@@ -58,11 +59,11 @@ public class PatientResources {
 		return patientService.updatePatient(Patient);
 	}
 
-	
+	@POST
 	@Path("{Patientid}/pay")
-	public Status payForCart(@PathParam("Patientid") int patientid)
+	public Status payForCart(@PathParam("Patientid") int patientid, LatLon latlon)
 	{
-		return patientService.pay(patientid);
+		return patientService.pay(patientid, latlon.getLat(), latlon.getLon());
 	}
 	
 	@GET
