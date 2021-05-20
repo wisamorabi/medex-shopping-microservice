@@ -34,7 +34,7 @@ public class PharmacyResources {
 
 
 
-	@Path("{Pharmacyid}/pharmaceuticalStock")
+	@Path("{Pharmacyid}/pharmaceuticalsStock")
 	public PharmaceuticalsStockResources getPharmaceuticalsStock()
 	{
 		return new PharmaceuticalsStockResources();
