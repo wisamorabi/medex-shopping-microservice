@@ -11,7 +11,7 @@ public class CartItem {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //"Do this identification for me, generate that specific ID for me
 	@Column(name="id")
 	int id;
-	@Column(name="patientid")
+	@Column(name="patientID")
 	int patientID;
 	@Column(name="medicineID")
 	int medicineID;
@@ -23,6 +23,7 @@ public class CartItem {
 	String pharmacyName;
 	@Column(name="count")
 	int count;
+	
 	
 	public CartItem() {}
 

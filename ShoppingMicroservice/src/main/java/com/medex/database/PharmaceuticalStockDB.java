@@ -100,7 +100,7 @@ public class PharmaceuticalStockDB {
 		try (Session session = HibernateUtil.getPharmacySessionFactory().openSession())
 		{
 			transaction = session.beginTransaction();
-			pharmaceuticalStock = session.createQuery("from PharmaceuticalStock P WHERE P.pharmacyID = :pharmacyid and count > :n", PharmaceuticalStock.class).setParameter("pharmacyid", pharmacyid).setParameter('n', 0).list(); //This is a hibernate query (Get all pharmacies from the pharmacies database)
+			pharmaceuticalStock = session.createQuery("from PharmaceuticalStock P WHERE P.pharmacyID = :pharmacyid AND P.count > :n", PharmaceuticalStock.class).setParameter("pharmacyid", pharmacyid).setParameter("n", 0).list(); //This is a hibernate query (Get all pharmacies from the pharmacies database)
 																		 //Each returned row is a pharmaceuticalStock object inserted into the list of pharmacies --> pharmacies
 			transaction.commit();
 		}

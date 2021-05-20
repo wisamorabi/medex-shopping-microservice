@@ -18,7 +18,6 @@ import com.medex.services.OrderItemService;
 
 
 //Request resources which acts as a layer before our OrderItem services
-@Path("/")
 public class OrderItemResources {
 	OrderItemService orderItemService = new OrderItemService();
 

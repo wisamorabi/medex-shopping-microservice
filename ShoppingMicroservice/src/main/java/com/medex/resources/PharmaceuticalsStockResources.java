@@ -17,9 +17,7 @@ import com.medex.dependentresources.PharmaceuticalStock;
 import com.medex.services.PharmaceuticalStockService;
 
 
-
 //Request resources which acts as a layer before our PharmaceuticalStock services
-@Path("/")
 public class PharmaceuticalsStockResources
 {
 	PharmaceuticalStockService pharmaceuticalsStockService = new PharmaceuticalStockService();

@@ -88,7 +88,7 @@ public class PatientService {
 		for (CartItem c : lst)
 		{
 			if (pharmaceuticalstockdb.getPharmaceuticalStock(c.getPharmacyID(), c.getMedicineID()) == null) return new Status(false);
-			if (pharmaceuticalstockdb.getPharmaceuticalStock(c.getPharmacyID(), c.getMedicineID()).getMedicineStock() < c.getCount()) return new Status(false);
+			if (pharmaceuticalstockdb.getPharmaceuticalStock(c.getPharmacyID(), c.getMedicineID()).getcount() < c.getCount()) return new Status(false);
 			List<Prescription> lst2 = prescriptionservice.getAllPrescriptions(patientid);
 			boolean found = false;
 			for (Prescription p : lst2)

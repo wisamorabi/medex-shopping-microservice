@@ -1,3 +1,4 @@
+//	 <Context docBase="ShoppingMicroservice" path="/ShoppingMicroservice" reloadable="true" source="org.eclipse.jst.jee.server:ShoppingMicroservice"/></Host>
 package com.medex.resources;
 
 
@@ -64,7 +65,7 @@ public class PatientResources {
 		return patientService.pay(patientid);
 	}
 	
-	
+	@GET
 	@Path("/login/{username}/{password}")
 	public Patient getPatientLogin(@PathParam("username") String username, @PathParam("password") String password)
 	{

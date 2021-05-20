@@ -77,11 +77,8 @@ public class OrderService {
 			{
 				if (p.getPharmaceuticalID() == oitem.getMedicineID())
 				{
-					if (p.getCount() <= oitem.getMedicineID()) 
-						{
-							prescIDFound = p.getId();
-							break;
-						}
+						prescIDFound = p.getId();
+						break;
 				}
 			}
 			if (prescIDFound != -1)
@@ -99,7 +96,7 @@ public class OrderService {
 		Ordr o = orderdb.getOrder(patientid, orderid);
 		o.setDone(true);
 		orderdb.updateOrder(o);
-		return new Status(false);
+		return new Status(true);
 	}
 
 	

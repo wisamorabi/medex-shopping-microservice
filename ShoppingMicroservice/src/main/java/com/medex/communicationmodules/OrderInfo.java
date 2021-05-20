@@ -76,5 +76,13 @@ public class OrderInfo {
 	public void setPatientID(int patientID) {
 		this.patientID = patientID;
 	}
+
+	public boolean getDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
 	
 }

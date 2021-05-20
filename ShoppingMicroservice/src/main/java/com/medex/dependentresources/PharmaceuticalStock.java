@@ -17,8 +17,8 @@ public class PharmaceuticalStock {
 	String name;
 	@Column(name="pharmacyID")
 	int pharmacyID;
-	@Column(name="medicineStock")
-	int medicineStock;
+	@Column(name="count")
+	int count;
 	@Column(name="medicinePrice")
 	int medicinePrice;
 	
@@ -27,12 +27,12 @@ public class PharmaceuticalStock {
 	public PharmaceuticalStock() {}
 
 	//Non default constructor
-	public PharmaceuticalStock(int id, int amedicineID, int apharmacyID, int amedicinePrice, int amedicineStock, String name) {
+	public PharmaceuticalStock(int id, int amedicineID, int apharmacyID, int amedicinePrice, int acount, String name) {
 		this.id = id;
 		this.name = name;
 		this.medicineID = amedicineID;
 		this.pharmacyID = apharmacyID;
-		this.medicineStock = amedicineStock;
+		this.count = acount;
 		this.medicinePrice = amedicinePrice;
 }
 
@@ -60,12 +60,12 @@ public class PharmaceuticalStock {
 		this.pharmacyID = pharmacyID;
 	}
 
-	public int getMedicineStock() {
-		return medicineStock;
+	public int getcount() {
+		return count;
 	}
 
-	public void setMedicineStock(int medicineStock) {
-		this.medicineStock = medicineStock;
+	public void setcount(int count) {
+		this.count = count;
 	}
 
 	public int getMedicinePrice() {
