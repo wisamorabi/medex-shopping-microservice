@@ -41,8 +41,8 @@ public class OrderItemResources {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OrderItem addOrderItem(@PathParam("Patientid") int patientid, @PathParam("Orderid") int orderid, OrderItem orderitem) {
-		return orderItemService.addOrderItem(patientid, orderid, orderitem);
+	public OrderItem addOrderItem(@PathParam("Patientid") int patientid, OrderItem orderitem) {
+		return orderItemService.addOrderItem(patientid, orderitem);
 	}
 
 	@PUT

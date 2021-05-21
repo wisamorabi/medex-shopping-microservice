@@ -9,5 +9,5 @@ public class Status
 	public Status(boolean TransSuccess) {this.TransSuccess = TransSuccess;}
 	
 	public boolean getTransSuccess() { return TransSuccess; }
-	public void setTransSuccess(boolean transSuccess) { TransSuccess = transSuccess; }	
+	public void setTransSuccess(boolean TransSuccess) { this.TransSuccess = TransSuccess; }	
 }

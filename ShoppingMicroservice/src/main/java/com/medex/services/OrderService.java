@@ -62,11 +62,16 @@ public class OrderService {
 	
 	public Status Refund(int patientid, int orderid)
 	{
+		System.out.println(patientid + " " + orderid);
+		System.out.println("X1");
 		if (patientdb.getPatient(patientid) == null) return new Status(false);
+		System.out.println("X2");
 		if (orderdb.getOrder(patientid, orderid) == null) return new Status(false);
+		System.out.println("X3");
 		Ordr d = orderdb.getOrder(patientid, orderid);
+		System.out.println("X4");
 		if (d.getDone() == true || d.getInProgress() == true) return new Status(false);
-		
+		System.out.println("X5");
 		int subtotal = 0;
 		List<OrderItem> lst = orderItemService.getAllOrderItems(patientid, orderid);
 		List<Prescription> lst2 = prescriptionservice.getAllPrescriptions(patientid);

@@ -37,8 +37,4 @@ public class PrescriptionResources {
 	public Prescription getPrescription(@PathParam("Patientid") int patientid, @PathParam("Prescriptionid") int prescriptionid) {
 		return prescriptionService.getPrescription(patientid, prescriptionid);
 	}
-
-	
-	
-
 }

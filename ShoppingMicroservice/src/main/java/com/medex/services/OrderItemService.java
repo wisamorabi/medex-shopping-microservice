@@ -33,12 +33,10 @@ public class OrderItemService {
 	}
 	
 	
-	public OrderItem addOrderItem(int patientid, int orderid, OrderItem orderitem) {
+	public OrderItem addOrderItem(int patientid, OrderItem orderitem) {
 		orderitem.setPatientID(patientid);
-		orderitem.setOrderID(orderid);
 		System.out.println(String.valueOf(orderitem.getMedicineID()) +  " " + String.valueOf(orderitem.getOrderID()) +  " " + String.valueOf(orderitem.getPatientID()) +  " " + String.valueOf(orderitem.getPharmacyID()) +  " ");
 		if (patientdb.getPatient(patientid) == null) return null;
-		if (orderdb.getOrder(patientid, orderid) == null) return null;
 		if (pharmaceuticalDB.getPharmaceutical(orderitem.getMedicineID()) == null) return null;
 		orderItemdb.insertOrderItem(orderitem);
 		return orderitem;

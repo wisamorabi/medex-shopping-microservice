@@ -63,6 +63,7 @@ public class PatientResources {
 	@Path("{Patientid}/pay")
 	public Status payForCart(@PathParam("Patientid") int patientid, LatLon latlon)
 	{
+		System.out.println("1");
 		return patientService.pay(patientid, latlon.getLat(), latlon.getLon());
 	}
 	
