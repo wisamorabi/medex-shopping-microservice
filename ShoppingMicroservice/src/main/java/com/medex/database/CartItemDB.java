@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 
 import com.medex.model.CartItem;
 
-//This class is specifically for the cartItems database operations
+//This class is specifically for the cartItems database operations.
 public class CartItemDB {
 	public void insertCartItem(CartItem cartItem)
 	{
