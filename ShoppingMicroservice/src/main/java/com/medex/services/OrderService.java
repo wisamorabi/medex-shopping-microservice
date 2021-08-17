@@ -97,7 +97,7 @@ public class OrderService {
 		}
 		
 		Patient p = patientdb.getPatient(patientid);
-		p.setWallet(p.getWallet()+subtotal);
+		p.setWallet(p.getWallet()+((subtotal)/2));
 		patientdb.updatePatient(p);
 		
 		Ordr o = orderdb.getOrder(patientid, orderid);
