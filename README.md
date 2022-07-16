@@ -7,7 +7,11 @@
      <a href="https://aws.amazon.com"><img src="https://img.shields.io/static/v1?label=&message=AWS&color=282c3c&logo=amazonaws&logoColor=orange"></a>
      <a href="https://www.mysql.com"><img src="https://img.shields.io/static/v1?label=&message=MySQL&color=3D6488&logo=mySQL&logoColor=white"></a>
      <a href="https://www.eclipse.org/ide"><img src="https://img.shields.io/static/v1?label=&message=Eclipse&color=2C2255&logo=eclipse&logoColor=white"></a>
-
+<br> 
+<a href="https://www.github.com/ElixirForge/medex-pharmacy-microservice"><img src="https://img.shields.io/static/v1?label=&message=medex-pharmacy-microservice&color=000000&logo=github"></a>
+     <a href="https://www.github.com/ElixirForge/medex-personnel-microservice"><img src="https://img.shields.io/static/v1?label=&message=medex-personnel-microservice&color=000000&logo=github"></a>
+     <a href="https://www.github.com/ElixirForge/medex-doctor-microservice"><img src="https://img.shields.io/static/v1?label=&message=medex-doctor-microservice&color=000000&logo=github"></a>
+     <a href="https://www.github.com/ElixirForge/medex-android-app"><img src="https://img.shields.io/static/v1?label=&message=medex-android-app&color=000000&logo=github"></a>  
 </div> 
 <hr>
 <div align="center">
